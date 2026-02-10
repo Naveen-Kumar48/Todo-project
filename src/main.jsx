@@ -1,6 +1,5 @@
-import { createRoot } from "react-dom/client";
-import App from "./App";
+import React from 'react'//imr
+import ReactDOM, { createRoot } from 'react-dom/client'//imrd
+import App from './App'
 
-createRoot(document.getElementById('root')).render(
-    <App/>
-)
+createRoot(document.getElementById("root")).render(<App/>)
