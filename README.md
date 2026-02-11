@@ -26,18 +26,6 @@ This project demonstrates core React concepts such as controlled forms, event ha
 
 ---
 
-## 🧠 Concepts Covered
-
-* React Functional Components
-* useState Hook
-* Event Handling (`onChange`, `onSubmit`)
-* Controlled Components
-* Props & Component Communication
-* Conditional Rendering
-* CRUD Operations
-* Array Methods (`map`, `filter`, `find`)
-* UUID for unique IDs
-* Global Styling in React
 
 ---
 
