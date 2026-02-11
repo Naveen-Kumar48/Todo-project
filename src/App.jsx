@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import FormContainer from './FormContainer'
 import { v4 as uuidv4 } from "uuid";
 import TodoList from './TodoList';
+import "./Global.css"
 
 const App = () => {
 
@@ -43,6 +44,7 @@ const App = () => {
          });
       }
   }
+
   
   //! *****delete set of data*********
   const handleDelete = (delId) => {
@@ -55,6 +57,28 @@ const App = () => {
     setFormData({...formData,items:filterVal})
   }
 
+  //*edit function 
+  const handleEdit=(editId)=>{
+    //?collections "all remaining  items " apart from the items to edit
+    const remaingVal=formData.items.filter((val)=>{
+      return  val.id !==editId
+    })
+    //? finding  specific   item to edit 
+    const editItem=formData.items.find((val)=>{
+      return val.id===editId
+    })
+    console.log("edit item id" ,editItem)
+    console.log("remaining val",remaingVal)
+    setFormData({
+      items:remaingVal,//*apart form  to edit  bringing  "remaining vals into the UI"
+      course:editItem.course,//*bringing "course to the edit into the  course input "
+      trainer:editItem.trainer,
+      id:editItem.id//*   pointing to the exact same id to edit
+    })
+  }
+
+
+
   return (
     <>
       <section>
@@ -66,7 +90,8 @@ const App = () => {
         />
         <TodoList
           items={formData.items}
-          handleDelete={handleDelete} />
+          handleDelete={handleDelete}
+          handleEdit={handleEdit} />
       </section>
     </>
   );

@@ -1,45 +1,56 @@
-import React, { Fragment } from 'react'
+import React from "react";
 
-const TodoList = (props) => {
-
-    const { items, handleDelete } = props;
-    
+const TodoList = ({ items, handleDelete, handleEdit }) => {
   return (
-      <>
-          <table>
-              <thead>
-                  <tr>
-                      <th>ID</th>
-                      <th>COURSE</th>
-                      <th>TRAINER</th>
-                      <th>MORE OPTION</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  {items.length > 0 && items.map((val) => {
-                      return (
-                        <Fragment key={val.id}>
-                        <tr>
-                          <td>{val.id}</td>
-                          <td>{val.course}</td>
-                          <td>{val.trainer}</td>
-                          <td>
-                          <button>EDIT</button>
-                          <button onClick={
-                          ()=>{handleDelete(val.id)}}>
-                          DELETE
-                          </button>
-                          </td>
-                        </tr>
-                        </Fragment>
-                      );
-                  })}
-              </tbody>
-          </table>
-      </>
-  )
-}
-export default TodoList
+    <div className="table-container">
+      <table className="todo-table">
 
-//!array.length --> no. of elements in array
-//? array.length===0  -->empty array
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>COURSE</th>
+            <th>TRAINER</th>
+            <th>MORE OPTION</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {items.length === 0 ? (
+            <tr>
+              <td colSpan="4" className="empty-msg">
+                No Data Available
+              </td>
+            </tr>
+          ) : (
+            items.map((val) => (
+              <tr key={val.id}>
+                <td>{val.id}</td>
+                <td>{val.course}</td>
+                <td>{val.trainer}</td>
+
+                <td className="action-buttons">
+                  <button
+                    className="edit-btn"
+                    onClick={() => handleEdit(val.id)}
+                  >
+                    EDIT
+                  </button>
+
+                  <button
+                    className="delete-btn"
+                    onClick={() => handleDelete(val.id)}
+                  >
+                    DELETE
+                  </button>
+                </td>
+              </tr>
+            ))
+          )}
+        </tbody>
+
+      </table>
+    </div>
+  );
+};
+
+export default TodoList;
